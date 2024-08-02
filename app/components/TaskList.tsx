@@ -1,5 +1,6 @@
-// components/TaskList.tsx
+
 import TaskItem from './TaskItem';
+
 
 interface TaskListProps {
   tasks: Task[];
@@ -18,7 +19,7 @@ interface Task {
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, onUpdateTask, onDeleteTask, onToggleComplete }) => {
   return (
-    <div>
+    <div className="text-white">
       {tasks.map((task) => (
         <TaskItem
           key={task.id}

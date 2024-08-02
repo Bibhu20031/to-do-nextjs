@@ -1,5 +1,8 @@
-// components/TaskItem.tsx
-import { useState, ChangeEvent, MouseEvent } from 'react';
+
+import { useState, ChangeEvent} from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 interface TaskItemProps {
   task: Task;
@@ -28,40 +31,44 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onUpdateTask, onDeleteTask, o
   };
 
   return (
-    <div>
+   <>
+    <div className='flex justify-center align-middle gap-10'>
       {isEditing ? (
         <>
-          <input
+          <Input
             type="text"
             value={updatedTask}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setUpdatedTask(e.target.value)}
           />
-          <textarea
+          <Textarea
             value={updatedDescription}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setUpdatedDescription(e.target.value)}
-          ></textarea>
-          <button onClick={handleUpdate}>Save</button>
+          />
+          <Button onClick={handleUpdate} className='text-blue-700'>Save</Button>
         </>
       ) : (
         <>
           <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
             {task.task}
           </span>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-          <button onClick={() => onToggleComplete(task.id)}>Complete</button>
-          <button onClick={() => onDeleteTask(task.id)}>Delete</button>
+          <Button onClick={() => setIsEditing(true)} variant='secondary'>Edit</Button>
+          <Button onClick={() => onToggleComplete(task.id)} variant='outline' className='bg-green-400'>Complete</Button>
+          <Button onClick={() => onDeleteTask(task.id)} variant='destructive'>Delete</Button>
         </>
       )}
-      <button onClick={() => setIsExpanded(!isExpanded)}>
+      <Button onClick={() => setIsExpanded(!isExpanded)}>
         {isExpanded ? 'Collapse' : 'Expand'}
-      </button>
-      {isExpanded && (
-        <div>
-          <p>{task.description}</p>
-          <p>Last updated: {new Date(task.updatedAt).toLocaleString()}</p>
+      </Button>
+      
+   
+    </div>
+    {isExpanded && (
+        <div >
+          <p className=' flex justify-center '>{task.description}</p>
+          <p className=' flex justify-center '>Last updated: {new Date(task.updatedAt).toLocaleString()}</p>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

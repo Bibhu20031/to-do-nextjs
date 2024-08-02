@@ -1,5 +1,10 @@
-// app/components/TaskForm.tsx
+
 import { useState, ChangeEvent, FormEvent } from 'react';
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+
+
 
 interface TaskFormProps {
   onAddTask: (task: Task) => void;
@@ -22,22 +27,26 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
   };
 
   return (
+    <div className='flex justify-center align-middle'>
     <form onSubmit={handleSubmit}>
-      <input
+      <Input
         type="text"
         value={task}
         onChange={(e: ChangeEvent<HTMLInputElement>) => setTask(e.target.value)}
         placeholder="Task"
         required
+        className='w-50'
       />
-      <textarea
+      <Textarea
         value={description}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
         placeholder="Description"
         required
-      ></textarea>
-      <button type="submit">Add Task</button>
+        className='w-50'
+      />
+      <Button variant="outline" className='bg-blue-500 '>Add Task</Button>
     </form>
+    </div>
   );
 };
 

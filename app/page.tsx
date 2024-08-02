@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect, ChangeEvent } from 'react';
-import { useSearchParams } from 'next/navigation'; // Updated import for Next.js 14
+import { useSearchParams } from 'next/navigation';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
 import tasksData from './data/data.json';
+import { Input } from '@/components/ui/input';
 
 interface Task {
   id: number;
@@ -66,12 +67,16 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Todo List</h1>
-      <input
+      <h1 className='flex justify-center text-white'>Todo List</h1>
+      <div className=' flex justify-center '>
+        
+      <Input
         type="text"
         placeholder="Search tasks"
         onChange={handleSearch}
-      />
+        className='flex justify-center w-50'
+        />
+      </div>
       <TaskForm onAddTask={addTask} />
       <TaskList
         tasks={filteredTasks}
