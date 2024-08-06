@@ -15,8 +15,6 @@ Routing: Next.js app directory with useSearchParams for query parameters
 Setup and Run Instructions
 Clone the Repository:
 
-sh
-Copy code
 git clone https://github.com/Bibhu20031/todo-do-nextjs.git
 
 
